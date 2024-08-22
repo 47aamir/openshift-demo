@@ -3,6 +3,7 @@ pipeline {
     triggers {
         pollSCM('* * * * *')
     }
+
     environment {
         REPO_URL = 'https://github.com/47aamir/openshift-demo.git'
         IMAGE_NAME = 'flask-app'
@@ -14,7 +15,7 @@ pipeline {
         stage('Clone Repository') {
             steps {
                 echo 'Cloning the repository...'
-                git url: "${REPO_URL}"
+                git branch: 'main', changelog: false, poll: false, url: "${REPO_URL}"
             }
         }
 
